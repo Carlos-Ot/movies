@@ -10,6 +10,8 @@ pr:
     include:
       - master
 
+name: $(Rev:r)
+
 pool:
   vmImage: 'macos-latest'
 
