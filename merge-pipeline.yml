@@ -6,6 +6,8 @@
 trigger:
 - master
 
+name: $(Rev:r)
+
 pool:
   vmImage: 'macos-latest'
 
