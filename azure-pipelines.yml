@@ -39,4 +39,4 @@ steps:
     gradleOptions: '-Xmx4608m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'build'
+    tasks: 'assembleDebug'
