@@ -8,6 +8,8 @@ trigger:
       include:
       - development
 
+pr: none
+
 name: $(Rev:r)
 
 pool:
