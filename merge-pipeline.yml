@@ -8,10 +8,7 @@ trigger:
       include:
       - development
 
-pr:
-  branches:
-      exclude:
-      - development
+pr: none
 
 name: $(Rev:r)
 
