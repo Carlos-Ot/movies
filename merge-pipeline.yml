@@ -4,7 +4,9 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 trigger:
-- master
+  branches:
+      include:
+      - development
 
 name: $(Rev:r)
 
