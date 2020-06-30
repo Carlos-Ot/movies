@@ -6,13 +6,13 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.ottoboni.movies.viewmodels.LoadingViewModel"
+                type="com.ottoboni.movies.features.loading.LoadingViewModel"
         />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.LoadingActivity">
+            tools:context=".features.loading.LoadingActivity">
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

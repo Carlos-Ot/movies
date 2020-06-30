@@ -1,0 +1,51 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+trigger: none
+
+pr:
+  branches:
+    include:
+      - master
+      - development
+
+name: $(Rev:r)
+
+variables:
+  appBuildNumber: $(Build.BuildNumber)
+
+pool:
+  vmImage: 'macos-latest'
+
+steps:
+- script: |
+      ./gradlew ktlint
+
+- task: CopyFiles@2
+  condition: failed()
+  inputs:
+    contents: '**/ktlint/*.html'
+    targetFolder: '$(build.artifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  condition: failed()
+  inputs:
+    PathtoPublish: '$(build.artifactStagingDirectory)'
+    ArtifactName: 'KlintReport'
+    publishLocation: 'Container'
+
+- task: Gradle@2
+  inputs:
+    displayName: 'Build Project and Run Unit Tests'
+    workingDirectory: ''
+    options: '-PappBuildNumber=$(appBuildNumber)'
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx4608m'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'testDebugUnitTest assembleDebug'
+    checkStyleRunAnalysis: false
+    findBugsRunAnalysis: false
+    pmdRunAnalysis: false

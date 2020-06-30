@@ -8,11 +8,11 @@ import com.ottoboni.movies.data.source.local.entity.SeasonEntity
 interface SeasonDao : BaseDao<SeasonEntity> {
 
     @Query("SELECT * FROM tb_season")
-    suspend fun getAll(): List<SeasonEntity>
+    suspend fun getAll(): List<SeasonEntity>?
 
     @Query("SELECT * FROM tb_season WHERE id = :seasonId")
-    suspend fun getById(seasonId: Int): SeasonEntity
+    suspend fun getById(seasonId: Int): SeasonEntity?
 
     @Query("SELECT * FROM tb_season WHERE season_number = :seasonNumber")
-    suspend fun getSeasonByNumber(seasonNumber: Int): SeasonEntity
+    suspend fun getSeasonByNumber(seasonNumber: Int): SeasonEntity?
 }

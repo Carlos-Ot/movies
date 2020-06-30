@@ -1,6 +1,8 @@
 package com.ottoboni.movies.domain.model
 
-data class Season(
+import javax.inject.Inject
+
+data class Season @Inject constructor(
     val airDate: String,
 
     val episodeCount: Int,

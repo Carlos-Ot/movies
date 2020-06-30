@@ -1,6 +1,8 @@
 package com.ottoboni.movies.domain.model
 
-data class ShowSeasons(
+import javax.inject.Inject
+
+data class ShowSeasons @Inject constructor(
     val show: Show,
     val seasons: List<Season>
 )

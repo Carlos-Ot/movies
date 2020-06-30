@@ -9,7 +9,8 @@ data class SeasonWithEpisodes(
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "season_id"
+        entityColumn = "season_id",
+        entity = EpisodeEntity::class
     )
     val episodes: List<EpisodeEntity> = ArrayList()
 )

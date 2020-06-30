@@ -2,10 +2,11 @@ package com.ottoboni.movies.domain.model.mapper
 
 import com.ottoboni.movies.data.source.local.entity.ShowEntity
 import com.ottoboni.movies.domain.model.Show
+import javax.inject.Inject
 
-object ShowMapper : Mapper<ShowEntity, Show> {
-    override fun toDomain(entity: ShowEntity): Show {
-        return Show(
+class ShowMapper @Inject constructor() : Mapper<ShowEntity, Show> {
+    override fun toDomain(entity: ShowEntity) =
+        Show(
             originalName = entity.originalName,
             genres = emptyList(),
             genreIds = entity.genreIds,
@@ -22,23 +23,21 @@ object ShowMapper : Mapper<ShowEntity, Show> {
             posterPath = entity.posterPath,
             seasons = emptyList()
         )
-    }
 
-    override fun fromDomain(domain: Show): ShowEntity {
-        return ShowEntity(
-            originalName = domain.originalName,
-            genreIds = domain.genreIds,
-            name = domain.name,
-            popularity = domain.popularity,
-            originCountry = domain.originCountry,
-            voteCount = domain.voteCount,
-            firstAirDate = domain.firstAirDate,
-            backdropPath = domain.backdropPath,
-            originalLanguage = domain.originalLanguage,
-            id = domain.id,
-            voteAverage = domain.voteAverage,
-            overview = domain.overview,
-            posterPath = domain.posterPath
+    override fun fromDomain(domain: Show) =
+        ShowEntity(
+            originalName = domain.originalName ?: "",
+            genreIds = domain.genreIds ?: emptyList(),
+            name = domain.name ?: "",
+            popularity = domain.popularity ?: 0F,
+            originCountry = domain.originCountry ?: emptyList(),
+            voteCount = domain.voteCount ?: 0,
+            firstAirDate = domain.firstAirDate ?: "",
+            backdropPath = domain.backdropPath ?: "",
+            originalLanguage = domain.originalLanguage ?: "",
+            id = domain.id ?: 0,
+            voteAverage = domain.voteAverage ?: 0f,
+            overview = domain.overview ?: "",
+            posterPath = domain.posterPath ?: ""
         )
-    }
 }
