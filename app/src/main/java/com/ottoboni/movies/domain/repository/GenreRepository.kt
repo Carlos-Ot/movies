@@ -1,14 +1,15 @@
 package com.ottoboni.movies.domain.repository
 
+import com.ottoboni.movies.data.source.local.cache.ListCache
 import com.ottoboni.movies.data.source.local.datasource.GenreLocalDataSource
 import com.ottoboni.movies.data.source.remote.datasource.GenreRemoteDataSource
 import com.ottoboni.movies.domain.model.Genre
-import com.ottoboni.movies.domain.model.factory.GenreFactory
 import javax.inject.Inject
 
 class GenreRepository @Inject constructor(
     private val localDataSource: GenreLocalDataSource,
-    private val remoteDataSource: GenreRemoteDataSource
+    private val remoteDataSource: GenreRemoteDataSource,
+    private val genreCache: ListCache<Genre>
 ) : IGenreRepository {
     override suspend fun save(genre: Genre) = localDataSource.save(genre)
 
@@ -18,6 +19,8 @@ class GenreRepository @Inject constructor(
 
     override suspend fun getById(id: Int) = localDataSource.getById(id)
 
-    // TODO: Add Local Cache for Genres
-    override suspend fun loadGenres() = remoteDataSource.fetchGenres()
+    override suspend fun loadGenres() =
+        if (genreCache.items.isEmpty())
+            remoteDataSource.fetchGenres()?.also(genreCache::plusAssign)
+        else genreCache.items
 }

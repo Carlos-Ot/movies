@@ -1,25 +1,45 @@
 package com.ottoboni.movies.domain.repository
 
+import com.ottoboni.movies.data.source.local.cache.ListCache
 import com.ottoboni.movies.data.source.local.datasource.ShowLocalDataSource
 import com.ottoboni.movies.data.source.remote.datasource.ShowRemoteDataSource
+import com.ottoboni.movies.data.source.remote.model.enums.MediaType
+import com.ottoboni.movies.data.source.remote.model.enums.TimeWindow
 import com.ottoboni.movies.domain.model.Show
 import javax.inject.Inject
 
 class ShowRepository @Inject constructor(
     private val localDataSource: ShowLocalDataSource,
-    private val remoteDataSource: ShowRemoteDataSource
+    private val remoteDataSource: ShowRemoteDataSource,
+    private val genresRepository: IGenreRepository,
+    private val popularCache: ListCache<Show>,
+    private val trendingCache: ListCache<Show>
 ) : IShowRepository {
     override suspend fun getShowsWithSeasons() = localDataSource.getShowsWithSeasons()
 
     override suspend fun getShowWithSeasonsById(showId: Int) =
         localDataSource.getShowWithSeasonById(showId)
 
-    // TODO: Save Popular List on Local Cache
     override suspend fun fetchPopular(page: Int, region: String) =
-        remoteDataSource.fetchPopularShows(page, region)
+        popularCache.items
+            .takeIf { it.size >= page * PAGE_SIZE + PAGE_SIZE }
+            ?.subList(fromIndex = page * PAGE_SIZE, toIndex = page * PAGE_SIZE + PAGE_SIZE)
+            ?: remoteDataSource.fetchPopular(page, region)
+                ?.also { popularCache += it }
+                ?.distinctBy { it.id }
+                ?.take(PAGE_SIZE)
 
-    // TODO: Save Show on Local Cache
-    override suspend fun fetchShow(showId: Int) = remoteDataSource.fetchShow(showId)
+    override suspend fun fetchTrending() =
+        if (trendingCache.items.isEmpty())
+            remoteDataSource.fetchTrending(MediaType.TV, TimeWindow.WEEK)
+                ?.also { trendingCache += it }
+        else trendingCache.items
+
+    override suspend fun fetchBy(showId: Int) =
+        if (popularCache.items.isEmpty())
+            remoteDataSource.fetchBy(showId)?.also(popularCache::plusAssign)
+        else popularCache.items.firstOrNull { it.id == showId }
+            ?: remoteDataSource.fetchBy(showId)?.also(popularCache::plusAssign)
 
     // TODO: When the user saves a Show we need to save the seasons if available on cache.
     override suspend fun save(show: Show) = localDataSource.save(show)
@@ -28,5 +48,9 @@ class ShowRepository @Inject constructor(
 
     override suspend fun getAll() = localDataSource.getAll()
 
-    override suspend fun getById(id: Int) = localDataSource.getById(id)
+    override suspend fun getBy(id: Int) = localDataSource.getById(id)
+
+    companion object {
+        const val PAGE_SIZE = 20
+    }
 }

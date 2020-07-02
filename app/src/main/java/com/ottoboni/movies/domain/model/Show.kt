@@ -33,3 +33,10 @@ data class Show @Inject constructor(
 
     var seasons: List<Season>?
 )
+
+fun List<Show>.setGenres(genres: List<Genre>?) =
+    forEach { show ->
+        show.apply {
+            this.genres = genres?.filter { genre -> genreIds?.contains(genre.id) ?: false }
+        }
+    }

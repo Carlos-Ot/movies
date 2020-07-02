@@ -1,27 +1,35 @@
 package com.ottoboni.movies.domain.di
 
+import com.ottoboni.movies.data.source.remote.model.EpisodeResponse
+import com.ottoboni.movies.data.source.remote.model.GenreResponse
+import com.ottoboni.movies.data.source.remote.model.SeasonResponse
+import com.ottoboni.movies.data.source.remote.model.ShowResponse
+import com.ottoboni.movies.domain.model.Episode
+import com.ottoboni.movies.domain.model.Genre
+import com.ottoboni.movies.domain.model.Season
+import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.domain.model.factory.EpisodeFactory
 import com.ottoboni.movies.domain.model.factory.GenreFactory
+import com.ottoboni.movies.domain.model.factory.ModelFactory
 import com.ottoboni.movies.domain.model.factory.SeasonFactory
 import com.ottoboni.movies.domain.model.factory.ShowFactory
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 
 @InstallIn(ApplicationComponent::class)
 @Module
-object FactoryModule {
-    @Provides
-    fun providesEpisodeFactory() = EpisodeFactory()
+abstract class FactoryModule {
+    @Binds
+    abstract fun bindEpisodeFactory(impl: EpisodeFactory): ModelFactory<EpisodeResponse, Episode>
 
-    @Provides
-    fun providesGenreFactory() = GenreFactory()
+    @Binds
+    abstract fun bindGenreFactory(impl: GenreFactory): ModelFactory<GenreResponse, Genre>
 
-    @Provides
-    fun providesSeasonFactory(episodeFactory: EpisodeFactory) =
-        SeasonFactory(episodeFactory)
+    @Binds
+    abstract fun bindSeasonFactory(impl: SeasonFactory): ModelFactory<SeasonResponse, Season>
 
-    @Provides
-    fun providesShowFactory() = ShowFactory()
+    @Binds
+    abstract fun bindShowFactory(impl: ShowFactory): ModelFactory<ShowResponse, Show>
 }

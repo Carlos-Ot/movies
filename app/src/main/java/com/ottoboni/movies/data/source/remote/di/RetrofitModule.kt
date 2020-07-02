@@ -1,12 +1,11 @@
 package com.ottoboni.movies.data.source.remote.di
 
-import android.util.Log
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.ottoboni.movies.BuildConfig.TMDB_API_KEY
 import com.ottoboni.movies.BuildConfig.TMDB_API_QUERY
 import com.ottoboni.movies.BuildConfig.TMDB_BASE_URL
-import com.ottoboni.movies.data.source.remote.converters.EnumConverterFactory
 import com.ottoboni.movies.data.source.remote.TmdbApi
+import com.ottoboni.movies.data.source.remote.converters.EnumConverterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -28,7 +27,8 @@ object RetrofitModule {
     @Singleton
     @Provides
     fun providesApiClient(retrofit: Retrofit): TmdbApi = retrofit.create(
-        TmdbApi::class.java)
+        TmdbApi::class.java
+    )
 
     @Singleton
     @Provides
@@ -78,9 +78,7 @@ object RetrofitModule {
                     .build()
             )
             .build()
-            .let { request ->
-                Log.d("[OTT]", "request: ${request.url}")
-                chain.proceed(request) }
+            .let { request -> chain.proceed(request) }
     }
 
     @Singleton

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class SeasonRetrofitDataSource @Inject constructor(
     private val apiClient: TmdbApi,
-    private val seasonFactory: SeasonFactory
+    private val seasonFactory: ModelFactory<SeasonResponse, Season>
 ) : SeasonRemoteDataSource {
     override suspend fun fetchSeason(showId: Int, seasonNumber: Int) =
         apiClient.fetchSeasonAsync(showId, seasonNumber)

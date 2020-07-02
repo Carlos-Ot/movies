@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "com.ottoboni.movies"
         minSdkVersion build_versions.min_sdk
-        targetSdkVersion build_versions.target
+        targetSdkVersion build_versions.target_sdk
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -37,7 +37,7 @@ android {
         buildConfigField 'String', 'TMDB_API_QUERY', '"api_key"'
         buildConfigField 'String', 'TMDB_API_KEY', "${project.properties['apiKey']}"
         buildConfigField 'String', 'TMDB_API_VERSION', '"3"'
-        buildConfigField 'String', 'TMDB_BASE_IMGAGE_URL', '"https://image.tmdb.org/t/p/original/"'
+        buildConfigField 'String', 'TMDB_BASE_IMGAGE_URL', '"https://image.tmdb.org/t/p/original"'
 
     }
 
@@ -50,7 +50,6 @@ android {
 
     buildFeatures {
         dataBinding = true
-        viewBinding = true
     }
 
     lintOptions {
@@ -77,7 +76,7 @@ dependencies {
     implementation deps.android_ui
     implementation deps.androidx
 
-    //Hilt
+    // Hilt
     implementation deps.hilt
     kapt deps.hilt_processor
 
@@ -107,6 +106,9 @@ dependencies {
 
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.android_testing
+
+    // UI
+    implementation deps.ui
 
     // Debug
     implementation deps.stetho

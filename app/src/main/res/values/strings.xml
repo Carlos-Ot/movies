@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Movies</string>
+    <string name="app_name">Serial</string>
+
+    <!-- Main -->
+    <string name="main_trending_title_text">Trending</string>
+    <string name="main_popular_title_text">Popular</string>
+    <string name="main_more_button">More</string>
+
+    <!-- Item Show -->
+    <string name="item_show_popularity_label">%</string>
+
+    <!-- View More -->
+    <string name="view_more_trending_title_text">Trending</string>
+    <string name="view_more_popular_title_text">Popular</string>
 </resources>

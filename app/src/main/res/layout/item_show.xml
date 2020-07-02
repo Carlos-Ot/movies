@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_item_show"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/radius_item_show"
+            app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/iv_item_show_poster"
+                    android:layout_width="@dimen/width_item_show_poster"
+                    android:layout_height="0dp"
+                    android:background="@color/bunker"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintDimensionRatio="2:3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pokemon_placeholder" />
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_item_show_popularity"
+                    android:layout_width="@dimen/size_item_show_popularity"
+                    android:layout_height="@dimen/size_item_show_popularity"
+                    android:layout_marginEnd="@dimen/margin_end_item_show_popularity"
+                    app:cardCornerRadius="@dimen/radius_item_show_popularity"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_item_show_poster"
+                    app:layout_constraintEnd_toEndOf="@id/iv_item_show_poster"
+                    app:layout_constraintTop_toBottomOf="@id/iv_item_show_poster">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <com.timqi.sectorprogressview.ColorfulRingProgressView
+                            android:id="@+id/pb_item_show_popularity"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:bgColor="@color/white"
+                            app:fgColorEnd="@color/colorPrimaryDark"
+                            app:fgColorStart="@color/colorAccent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:strokeWidth="4dp" />
+
+                    <TextView
+                            android:id="@+id/tv_item_show_popularity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/text_size_item_show_popularity"
+                            app:layout_constraintBottom_toBottomOf="@id/pb_item_show_popularity"
+                            app:layout_constraintEnd_toEndOf="@id/pb_item_show_popularity"
+                            app:layout_constraintHorizontal_bias="0.45"
+                            app:layout_constraintStart_toStartOf="@id/pb_item_show_popularity"
+                            app:layout_constraintTop_toTopOf="@id/pb_item_show_popularity"
+                            tools:ignore="SmallSp"
+                            tools:text="68" />
+
+                    <TextView
+                            android:id="@+id/tv_item_show_popularity_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/item_show_popularity_label"
+                            android:textSize="@dimen/text_size_item_show_popularity_label"
+                            app:layout_constraintBaseline_toBaselineOf="@id/tv_item_show_popularity"
+                            app:layout_constraintStart_toEndOf="@id/tv_item_show_popularity"
+                            app:layout_constraintTop_toTopOf="@id/tv_item_show_popularity"
+                            tools:ignore="SmallSp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                    android:id="@+id/tv_item_show_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_horizontal_item_show_title"
+                    android:layout_marginVertical="@dimen/margin_vertical_item_show_title"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="1"
+                    android:textColor="@color/bunker"
+                    android:textSize="@dimen/text_size_item_show_title"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cv_item_show_popularity"
+                    tools:text="Pokemon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

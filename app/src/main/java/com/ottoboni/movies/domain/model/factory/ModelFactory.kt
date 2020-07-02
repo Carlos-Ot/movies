@@ -1,5 +1,5 @@
 package com.ottoboni.movies.domain.model.factory
 
-interface ModelFactory<in I, out O> {
+interface ModelFactory<I, O> {
     fun make(remote: I): O
 }

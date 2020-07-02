@@ -27,22 +27,22 @@ import dagger.hilt.android.components.ApplicationComponent
 @Module
 abstract class MapperModule {
     @Binds
-    abstract fun providesEpisodeMapper(impl: EpisodeMapper): Mapper<EpisodeEntity, Episode>
+    abstract fun bindEpisodeMapper(impl: EpisodeMapper): Mapper<EpisodeEntity, Episode>
 
     @Binds
-    abstract fun providesGenreMapper(impl: GenreMapper): Mapper<GenreEntity, Genre>
+    abstract fun bindGenreMapper(impl: GenreMapper): Mapper<GenreEntity, Genre>
 
     @Binds
-    abstract fun providesSeasonMapper(impl: SeasonMapper): Mapper<SeasonEntity, Season>
+    abstract fun bindSeasonMapper(impl: SeasonMapper): Mapper<SeasonEntity, Season>
 
     @Binds
-    abstract fun providesSeasonWithEpisodesMapper(impl: SeasonWithEpisodesMapper)
+    abstract fun bindSeasonWithEpisodesMapper(impl: SeasonWithEpisodesMapper)
             : RelationMapper<SeasonWithEpisodes, Season>
 
     @Binds
-    abstract fun providesShowMapper(impl: ShowMapper): Mapper<ShowEntity, Show>
+    abstract fun bindShowMapper(impl: ShowMapper): Mapper<ShowEntity, Show>
 
     @Binds
-    abstract fun providesShowWithSeasonsMapper(impl: ShowWithSeasonsMapper)
+    abstract fun bindShowWithSeasonsMapper(impl: ShowWithSeasonsMapper)
             : RelationMapper<ShowWithSeasons, Show>
 }

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class GenreRetrofitDataSource @Inject constructor(
     private val apiClient: TmdbApi,
-    private val genreFactory: GenreFactory
+    private val genreFactory: ModelFactory<GenreResponse, Genre>
 ) : GenreRemoteDataSource {
     override suspend fun fetchGenres() =
         apiClient.fetchGenresAsync()

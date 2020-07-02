@@ -26,7 +26,7 @@ versions.constraintlayout = '1.1.3'
 versions.cardview = '1.0.0'
 versions.recyclerview = '1.1.0'
 versions.palette = '1.0.0'
-versions.material = '1.2.0-beta01'
+versions.material = '1.3.0-alpha01'
 
 // Retrofit
 versions.retrofit = '2.9.0'
@@ -52,6 +52,11 @@ versions.android_test_espresso = '3.1.0'
 versions.hilt = '2.28-alpha'
 versions.hilt_lifecycle = '1.0.0-alpha01'
 
+// UI
+versions.page_indicator = '1.0.6'
+versions.coil_kt = '0.11.0'
+versions.progress_view = '2.0.1'
+
 // Lint
 versions.ktlint = '0.37.2'
 
@@ -61,7 +66,7 @@ def hilt = [
         "com.google.dagger:hilt-android:$versions.hilt",
         "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hilt_lifecycle"
 ]
-deps.hilt =  hilt
+deps.hilt = hilt
 
 def hilt_processor = [
         "com.google.dagger:hilt-android-compiler:$versions.hilt",
@@ -163,6 +168,13 @@ def android_testing = [
 ]
 deps.android_testing = android_testing
 
+def ui = [
+        "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:$versions.page_indicator",
+        "io.coil-kt:coil:$versions.coil_kt",
+        "com.timqi.sectorprogressview:library:$versions.progress_view"
+]
+deps.ui = ui
+
 // Core
 deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
@@ -172,7 +184,6 @@ deps.hilt_gradle_plugin = "com.google.dagger:hilt-android-gradle-plugin:$version
 
 // Lint
 deps.ktlint = "com.pinterest:ktlint:$versions.ktlint"
-
 
 ext.deps = deps
 
