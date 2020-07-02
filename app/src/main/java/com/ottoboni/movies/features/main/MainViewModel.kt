@@ -37,6 +37,9 @@ class MainViewModel @ViewModelInject constructor(
     private val _actionOnMorePopularButtonClicked = SingleLiveEvent<Any>()
     val actionOnMorePopularButtonClicked: LiveData<Any> get() = _actionOnMorePopularButtonClicked
 
+    private val _actionOnShowClicked = SingleLiveEvent<Show?>()
+    val actionOnShowClicked: LiveData<Show?> get() = _actionOnShowClicked
+
     init {
         loadShows()
     }
@@ -56,4 +59,13 @@ class MainViewModel @ViewModelInject constructor(
     fun onMoreTrendingButtonClicked() = _actionOnMoreTrendingButtonClicked.call()
 
     fun onMorePopularButtonClicked() = _actionOnMorePopularButtonClicked.call()
+
+    fun onFeaturedShowClicked(position: Int) =
+        _actionOnShowClicked.call(featured.value?.get(position))
+
+    fun onTrendingShowClicked(position: Int) =
+        _actionOnShowClicked.call(trending.value?.get(position))
+
+    fun onPopularShowClicked(position: Int) =
+        _actionOnShowClicked.call(popular.value?.get(position))
 }

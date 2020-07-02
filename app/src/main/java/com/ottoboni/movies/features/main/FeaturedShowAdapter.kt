@@ -1,14 +1,20 @@
 package com.ottoboni.movies.features.main
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.ottoboni.movies.R
 import com.ottoboni.movies.bindings.loadImage
 import com.ottoboni.movies.databinding.ItemFeaturedShowBinding
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.extensions.layoutInflater
+import com.ottoboni.movies.extensions.onClick
 
-class FeaturedShowAdapter(private val lifecycleOwner: LifecycleOwner) :
+class FeaturedShowAdapter(
+    private val lifecycleOwner: LifecycleOwner,
+    private val itemClickListener: (View, Int, Int) -> Unit
+) :
     RecyclerView.Adapter<FeaturedShowAdapter.ViewHolder>() {
 
     var items: List<Show> = emptyList()
@@ -20,7 +26,7 @@ class FeaturedShowAdapter(private val lifecycleOwner: LifecycleOwner) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         binding = ItemFeaturedShowBinding.inflate(parent.layoutInflater, parent, false),
         lifecycleOwner = lifecycleOwner
-    )
+    ).onClick(itemClickListener)
 
     override fun getItemCount() = items.size
 
@@ -34,7 +40,13 @@ class FeaturedShowAdapter(private val lifecycleOwner: LifecycleOwner) :
         }
 
         fun bind(show: Show) = with(binding) {
-            ivItemFeaturedShowBackdrop.loadImage(show.backdropPath, null, null)
+            root.context?.resources?.let { resources ->
+                ivItemFeaturedShowBackdrop.loadImage(
+                    show.backdropUrl,
+                    resources.getDrawable(R.drawable.icon_backdrop_placeholder, root.context.theme),
+                    resources.getDrawable(R.drawable.icon_backdrop_error, root.context.theme)
+                )
+            }
             tvFeaturedShowTitle.text = show.name
         }
     }

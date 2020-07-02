@@ -56,4 +56,9 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     }
 
     fun postCall() = postValue(null)
+
+    @MainThread
+    fun call(value: T) {
+        this.value = value
+    }
 }

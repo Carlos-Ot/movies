@@ -12,4 +12,8 @@
     <!-- View More -->
     <string name="view_more_trending_title_text">Trending</string>
     <string name="view_more_popular_title_text">Popular</string>
+
+    <!-- Show Details -->
+    <string name="show_details_popularity_label">User\nRating</string>
+    <string name="show_details_overview_title_text">Overview</string>
 </resources>

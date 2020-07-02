@@ -3,6 +3,7 @@ package com.ottoboni.movies.features.viewmore
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import androidx.lifecycle.observe
 import com.ottoboni.movies.R
 import com.ottoboni.movies.databinding.ActivityViewMoreBinding
 import com.ottoboni.movies.features.show.ShowAdapter
+import com.ottoboni.movies.features.showdetails.ShowDetailsActivity
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.POPULAR
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.TRENDING
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,18 +46,27 @@ abstract class ViewMoreActivity : AppCompatActivity() {
                 if (intent.getSerializableExtra(SOURCE_EXTRA_KEY) == TRENDING)
                     resources.getString(R.string.view_more_trending_title_text)
                 else resources.getString(R.string.view_more_popular_title_text)
-            setDisplayHomeAsUpEnabled(true)
         }
     }
 
     private fun setupRecyclerView() = with(binding.rvViewMore) {
-        showAdapter = ShowAdapter(this@ViewMoreActivity)
+        showAdapter = ShowAdapter(this@ViewMoreActivity, showClickListener)
         adapter = showAdapter
+    }
+
+    private val showClickListener: (View, Int, Int) -> Unit = { _, position, _ ->
+        viewModel.onShowClicked(position)
     }
 
     private fun observeEvents() = with(viewModel) {
         shows.observe(this@ViewMoreActivity) {
             showAdapter.items = it
+        }
+
+        actionOnShowClicked.observe(this@ViewMoreActivity) { show ->
+            show?.let {
+                startActivity(ShowDetailsActivity.newIntent(this@ViewMoreActivity, it))
+            }
         }
     }
 

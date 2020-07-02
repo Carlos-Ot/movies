@@ -19,12 +19,12 @@ class ShowWithSeasonsMapper @Inject constructor(
             originCountry = entity.show.originCountry,
             voteCount = entity.show.voteCount,
             firstAirDate = entity.show.firstAirDate,
-            backdropPath = entity.show.backdropPath,
+            backdropUrl = entity.show.backdropPath,
             originalLanguage = entity.show.originalLanguage,
             id = entity.show.id,
             voteAverage = entity.show.voteAverage,
             overview = entity.show.overview,
-            posterPath = entity.show.posterPath,
+            posterUrl = entity.show.posterPath,
             seasons = entity.seasons.map(seasonMapper::toDomain)
         )
 }

@@ -25,7 +25,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:contentScrim="@color/colorPrimaryDark"
+                    app:contentScrim="@color/colorPrimary"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:scrimAnimationDuration="0"
                     app:scrimVisibleHeightTrigger="@dimen/scrim_trigger_main_toolbar"

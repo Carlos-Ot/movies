@@ -4,13 +4,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import com.ottoboni.movies.R
 import com.ottoboni.movies.bindings.loadImage
 import com.ottoboni.movies.databinding.ItemShowBinding
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.extensions.layoutInflater
+import com.ottoboni.movies.extensions.onClick
 import kotlin.math.ceil
 
-class ShowAdapter(private val lifecycleOwner: LifecycleOwner) :
+class ShowAdapter(
+    private val lifecycleOwner: LifecycleOwner,
+    private val itemClickListener: (View, Int, Int) -> Unit
+) :
     RecyclerView.Adapter<ShowAdapter.ViewHolder>() {
 
     var items: List<Show> = emptyList()
@@ -22,7 +27,7 @@ class ShowAdapter(private val lifecycleOwner: LifecycleOwner) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         binding = ItemShowBinding.inflate(parent.layoutInflater, parent, false),
         lifecycleOwner = lifecycleOwner
-    )
+    ).onClick(itemClickListener)
 
     override fun getItemCount() = items.size
 
@@ -38,7 +43,14 @@ class ShowAdapter(private val lifecycleOwner: LifecycleOwner) :
         }
 
         fun bind(show: Show) = with(binding) {
-            ivItemShowPoster.loadImage(show.posterPath, null, null)
+            root.context?.resources?.let { resources ->
+                ivItemShowPoster.loadImage(
+                    show.posterUrl,
+                    resources.getDrawable(R.drawable.icon_poster_placeholder, root.context.theme),
+                    resources.getDrawable(R.drawable.icon_poster_error, root.context.theme)
+                )
+            }
+
             show.voteAverage?.times(10)?.let {
                 val voteAverage = ceil(it)
                 tvItemShowPopularity.text = voteAverage.toInt().toString()

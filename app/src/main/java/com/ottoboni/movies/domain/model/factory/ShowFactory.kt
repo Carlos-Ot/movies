@@ -18,12 +18,12 @@ class ShowFactory @Inject constructor() : ModelFactory<ShowResponse, Show> {
             originCountry = remote.originCountry,
             voteAverage = remote.voteAverage,
             firstAirDate = remote.firstAirDate,
-            backdropPath = buildImageUrl(remote.backdropPath),
+            backdropUrl = buildImageUrl(remote.backdropPath),
             originalLanguage = remote.originalLanguage,
             id = remote.id,
             voteCount = remote.voteCount,
             overview = remote.overview,
-            posterPath = buildImageUrl(remote.posterPath),
+            posterUrl = buildImageUrl(remote.posterPath),
             seasons = emptyList()
         )
 

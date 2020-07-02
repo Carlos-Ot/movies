@@ -39,4 +39,21 @@
     <dimen name="margin_horizontal_item_show_title">8dp</dimen>
     <dimen name="margin_vertical_item_show_title">8dp</dimen>
     <dimen name="text_size_item_show_title">16sp</dimen>
+
+    <!-- Show Details -->
+    <dimen name="width_show_details_header">240dp</dimen>
+    <dimen name="constraint_guid_begin_show_details_start_margin">16dp</dimen>
+    <dimen name="constraint_guid_end_show_details_end_margin">16dp</dimen>
+    <dimen name="width_show_details_poster">120dp</dimen>
+    <dimen name="margin_start_show_details_popularity">16dp</dimen>
+    <dimen name="margin_bottom_show_details_popularity">8dp</dimen>
+    <dimen name="margin_start_show_details_popularity_label">8dp</dimen>
+    <dimen name="text_size_show_details_popularity_label">14sp</dimen>
+    <dimen name="margin_start_show_details_genres">16dp</dimen>
+    <dimen name="margin_top_show_details_genres">16dp</dimen>
+    <dimen name="text_size_show_details_genres">14sp</dimen>
+    <dimen name="margin_top_show_details_overview_title">24dp</dimen>
+    <dimen name="text_size_show_details_overview_title">22sp</dimen>
+    <dimen name="margin_top_show_details_overview">8dp</dimen>
+    <dimen name="text_size_show_details_overview">14sp</dimen>
 </resources>

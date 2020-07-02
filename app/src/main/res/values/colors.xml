@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#354941</color>
-    <color name="colorPrimary">#6E8678</color>
+    <color name="colorPrimaryDark">#37324D</color>
+    <color name="colorPrimary">#394C57</color>
     <color name="colorAccent">#E6221E</color>
 
     <color name="transparent">@android:color/transparent</color>
@@ -10,4 +10,5 @@
     <color name="bunker_50">#80070C0F</color>
     <color name="mantle">#93A298</color>
     <color name="ebony_clay">#2e3541</color>
+    <color name="cornflower_blue">#e9ecf3</color>
 </resources>

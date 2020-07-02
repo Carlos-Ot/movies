@@ -14,6 +14,7 @@ import com.ottoboni.movies.domain.repository.IShowRepository
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Companion.SOURCE_EXTRA_KEY
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.TRENDING
+import com.ottoboni.movies.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -27,6 +28,9 @@ class ViewMoreViewModel @ViewModelInject constructor(
 
     private val _shows = MutableLiveData<List<Show>>()
     val shows: LiveData<List<Show>> get() = _shows
+
+    private val _actionOnShowClicked = SingleLiveEvent<Show?>()
+    val actionOnShowClicked: LiveData<Show?> get() = _actionOnShowClicked
 
     init {
         loadShows()
@@ -46,4 +50,6 @@ class ViewMoreViewModel @ViewModelInject constructor(
                 ?.apply { setGenres(genres) }
                 ?.let(_shows::postValue)
     }
+
+    fun onShowClicked(position: Int) = _actionOnShowClicked.call(_shows.value?.get(position))
 }

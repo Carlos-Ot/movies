@@ -1,7 +1,10 @@
 package com.ottoboni.movies.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import javax.inject.Inject
 
+@Parcelize
 data class Show @Inject constructor(
     val originalName: String?,
 
@@ -19,7 +22,7 @@ data class Show @Inject constructor(
 
     val firstAirDate: String?,
 
-    val backdropPath: String?,
+    val backdropUrl: String?,
 
     val originalLanguage: String?,
 
@@ -29,10 +32,10 @@ data class Show @Inject constructor(
 
     val overview: String?,
 
-    val posterPath: String?,
+    val posterUrl: String?,
 
     var seasons: List<Season>?
-)
+) : Parcelable
 
 fun List<Show>.setGenres(genres: List<Genre>?) =
     forEach { show ->

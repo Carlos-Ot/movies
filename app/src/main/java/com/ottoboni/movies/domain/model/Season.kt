@@ -1,7 +1,10 @@
 package com.ottoboni.movies.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import javax.inject.Inject
 
+@Parcelize
 data class Season @Inject constructor(
     val airDate: String,
 
@@ -20,4 +23,4 @@ data class Season @Inject constructor(
     var showId: Int,
 
     val episodes: List<Episode>
-)
+) : Parcelable

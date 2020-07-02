@@ -15,12 +15,12 @@ class ShowMapper @Inject constructor() : Mapper<ShowEntity, Show> {
             originCountry = entity.originCountry,
             voteCount = entity.voteCount,
             firstAirDate = entity.firstAirDate,
-            backdropPath = entity.backdropPath,
+            backdropUrl = entity.backdropPath,
             originalLanguage = entity.originalLanguage,
             id = entity.id,
             voteAverage = entity.voteAverage,
             overview = entity.overview,
-            posterPath = entity.posterPath,
+            posterUrl = entity.posterPath,
             seasons = emptyList()
         )
 
@@ -33,11 +33,11 @@ class ShowMapper @Inject constructor() : Mapper<ShowEntity, Show> {
             originCountry = domain.originCountry ?: emptyList(),
             voteCount = domain.voteCount ?: 0,
             firstAirDate = domain.firstAirDate ?: "",
-            backdropPath = domain.backdropPath ?: "",
+            backdropPath = domain.backdropUrl ?: "",
             originalLanguage = domain.originalLanguage ?: "",
             id = domain.id ?: 0,
             voteAverage = domain.voteAverage ?: 0f,
             overview = domain.overview ?: "",
-            posterPath = domain.posterPath ?: ""
+            posterPath = domain.posterUrl ?: ""
         )
 }
