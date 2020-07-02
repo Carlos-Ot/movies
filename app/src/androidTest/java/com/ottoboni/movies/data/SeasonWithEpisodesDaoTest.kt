@@ -9,6 +9,7 @@ import com.ottoboni.movies.data.source.local.database.dao.SeasonDao
 import com.ottoboni.movies.data.source.local.database.dao.SeasonWithEpisodesDao
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,9 +39,11 @@ class SeasonWithEpisodesDaoTest {
         seasonDao.insert(*DataUtils.seasonList.toTypedArray())
         episodeDao.insert(*DataUtils.episodeList.toTypedArray())
 
-        val seasonWithEpisodes = seasonWithEpisodeDao.getSeasonWithEpisodes(DataUtils.SEASON_WITH_EPISODES_ID)
+        val seasonWithEpisodes =
+            seasonWithEpisodeDao.getSeasonWithEpisodes(DataUtils.SEASON_WITH_EPISODES_ID)
 
-        assertEquals(DataUtils.episodeList, seasonWithEpisodes.episodes)
+        assertNotNull(seasonWithEpisodes)
+        assertEquals(DataUtils.episodeList, seasonWithEpisodes?.episodes)
     }
 
     @Test
@@ -51,8 +54,10 @@ class SeasonWithEpisodesDaoTest {
         val seasonWithEpisodes =
             seasonWithEpisodeDao.getSeasonsWithEpisodesByShow(DataUtils.SEASON_WITH_EPISODES_SHOW_ID)
 
-        val seasonFromDb = seasonWithEpisodes.first { it.season.id == DataUtils.SEASON_WITH_EPISODES_ID }
+        val seasonFromDb =
+            seasonWithEpisodes?.first { it.season.id == DataUtils.SEASON_WITH_EPISODES_ID }
 
-        assertEquals(DataUtils.episodeList, seasonFromDb.episodes)
+        assertNotNull(seasonFromDb)
+        assertEquals(DataUtils.episodeList, seasonFromDb?.episodes)
     }
 }

@@ -8,8 +8,8 @@ import com.ottoboni.movies.data.source.local.database.dao.ShowDao
 import com.ottoboni.movies.data.source.local.entity.ShowEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -43,8 +43,9 @@ class ShowDaoTest {
     fun insertListAndGet() = runBlocking {
         showDao.insert(*DataUtils.showList.toTypedArray())
 
-        val showsFromDb = showDao.getAll()
+        val showsFromDb = showDao.getAll() ?: emptyList()
 
+        assertTrue(showsFromDb.isNotEmpty())
         assertTrue(showsFromDb.containsAll(DataUtils.showList))
     }
 
@@ -54,8 +55,9 @@ class ShowDaoTest {
 
         showDao.delete(DataUtils.showList.first())
 
-        val showsFromDb = showDao.getAll()
+        val showsFromDb = showDao.getAll() ?: emptyList()
 
+        assertTrue(showsFromDb.isNotEmpty())
         assertFalse(showsFromDb.contains(DataUtils.showList.first()))
     }
 

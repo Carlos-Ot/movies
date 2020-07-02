@@ -8,6 +8,7 @@ import com.ottoboni.movies.data.source.local.database.dao.SeasonDao
 import com.ottoboni.movies.data.source.local.entity.SeasonEntity
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertFalse
+import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -60,8 +61,9 @@ class SeasonDaoTest {
 
         seasonDao.delete(DataUtils.seasonList.first())
 
-        val seasonsFromDb = seasonDao.getAll()
+        val seasonsFromDb = seasonDao.getAll() ?: emptyList()
 
+        assertTrue(seasonsFromDb.isNotEmpty())
         assertFalse(seasonsFromDb.contains(DataUtils.seasonList.first()))
     }
 
