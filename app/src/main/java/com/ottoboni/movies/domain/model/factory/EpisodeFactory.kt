@@ -8,11 +8,11 @@ class EpisodeFactory @Inject constructor() : ModelFactory<EpisodeResponse, Episo
     override fun make(remote: EpisodeResponse) =
         Episode(
             episodeNumber = remote.episodeNumber,
-            airDate = remote.airDate,
-            name = remote.name,
-            overview = remote.overview,
+            airDate = remote.airDate?.ifBlank { null },
+            name = remote.name?.ifBlank { null },
+            overview = remote.overview?.ifBlank { null },
             id = remote.id,
-            stillPath = remote.stillPath,
+            stillPath = remote.stillPath?.ifBlank { null },
             voteAverage = remote.voteAverage,
             seasonId = 0
         )

@@ -8,6 +8,6 @@ class GenreFactory @Inject constructor() : ModelFactory<GenreResponse, Genre> {
     override fun make(remote: GenreResponse) =
         Genre(
             id = remote.id,
-            name = remote.name
+            name = remote.name?.ifBlank { null }
         )
 }

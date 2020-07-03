@@ -7,27 +7,27 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tb_season")
 data class SeasonEntity(
     @ColumnInfo(name = "air_date")
-    val airDate: String,
+    val airDate: String?,
 
     @ColumnInfo(name = "episode_count")
-    val episodeCount: Int,
+    val episodeCount: Int?,
 
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int?,
 
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String?,
 
     @ColumnInfo(name = "overview")
-    val overview: String,
+    val overview: String?,
 
     @ColumnInfo(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
 
     @ColumnInfo(name = "season_number")
-    val seasonNumber: Int,
+    val seasonNumber: Int?,
 
     @ColumnInfo(name = "show_id")
-    val showId: Int
+    val showId: Int?
 )

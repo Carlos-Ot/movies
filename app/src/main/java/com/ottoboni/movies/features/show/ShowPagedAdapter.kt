@@ -11,6 +11,7 @@ import com.ottoboni.movies.bindings.loadImage
 import com.ottoboni.movies.databinding.ItemShowBinding
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.extensions.layoutInflater
+import com.ottoboni.movies.extensions.onClick
 import kotlin.math.ceil
 
 class ShowPagedAdapter(
@@ -21,7 +22,7 @@ class ShowPagedAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         binding = ItemShowBinding.inflate(parent.layoutInflater, parent, false),
         lifecycleOwner = lifecycleOwner
-    )
+    ).onClick(itemClickListener)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position) ?: return)

@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Genre @Inject constructor(
-    val id: Int,
-    val name: String
+    val id: Int?,
+    val name: String?
 ) : Parcelable
 
 fun List<Genre>.toPlainText() = StringBuilder().apply {

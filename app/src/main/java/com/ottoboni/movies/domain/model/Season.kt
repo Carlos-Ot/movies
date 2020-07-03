@@ -6,21 +6,21 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Season @Inject constructor(
-    val airDate: String,
+    val airDate: String?,
 
-    val episodeCount: Int,
+    val episodeCount: Int?,
 
-    val id: Int,
+    val id: Int?,
 
-    val name: String,
+    val name: String?,
 
-    val overview: String,
+    val overview: String?,
 
-    val posterPath: String,
+    val posterPath: String?,
 
-    val seasonNumber: Int,
+    val seasonNumber: Int?,
 
-    var showId: Int,
+    var showId: Int?,
 
-    val episodes: List<Episode>
+    val episodes: List<Episode>?
 ) : Parcelable
