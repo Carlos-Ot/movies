@@ -6,19 +6,19 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Episode @Inject constructor(
-    val episodeNumber: Int,
+    val episodeNumber: Int?,
 
-    val airDate: String,
+    val airDate: String?,
 
-    val name: String,
+    val name: String?,
 
-    val overview: String,
+    val overview: String?,
 
-    val id: Int,
+    val id: Int?,
 
-    val stillPath: String,
+    val stillPath: String?,
 
-    val voteAverage: Float,
+    val voteAverage: Float?,
 
-    var seasonId: Int
+    var seasonId: Int?
 ) : Parcelable

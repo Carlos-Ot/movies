@@ -11,14 +11,14 @@ class SeasonFactory @Inject constructor(
 ) : ModelFactory<SeasonResponse, Season> {
     override fun make(remote: SeasonResponse) =
         Season(
-            airDate = remote.airDate,
+            airDate = remote.airDate?.ifBlank { null },
             episodeCount = remote.episodeCount,
             id = remote.id,
-            name = remote.name,
-            overview = remote.overview,
-            posterPath = remote.posterPath,
+            name = remote.name?.ifBlank { null },
+            overview = remote.overview?.ifBlank { null },
+            posterPath = remote.posterPath?.ifBlank { null },
             seasonNumber = remote.seasonNumber,
             showId = 0,
-            episodes = remote.episodes.map(episodeFactory::make)
+            episodes = remote.episodes?.ifEmpty { null }?.map(episodeFactory::make)
         )
 }

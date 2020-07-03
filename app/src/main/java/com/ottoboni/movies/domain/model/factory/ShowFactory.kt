@@ -10,20 +10,20 @@ import javax.inject.Inject
 class ShowFactory @Inject constructor() : ModelFactory<ShowResponse, Show> {
     override fun make(remote: ShowResponse) =
         Show(
-            originalName = remote.originalName,
+            originalName = remote.originalName?.ifBlank { null },
             genres = emptyList(),
-            genreIds = remote.genreIds,
-            name = remote.name,
+            genreIds = remote.genreIds?.ifEmpty { null },
+            name = remote.name?.ifBlank { null },
             popularity = remote.popularity,
-            originCountry = remote.originCountry,
+            originCountry = remote.originCountry?.ifEmpty { null },
             voteAverage = remote.voteAverage,
-            firstAirDate = remote.firstAirDate,
-            backdropUrl = buildImageUrl(remote.backdropPath),
-            originalLanguage = remote.originalLanguage,
+            firstAirDate = remote.firstAirDate?.ifBlank { null },
+            backdropUrl = remote.backdropPath?.ifBlank{ null }?.let(::buildImageUrl),
+            originalLanguage = remote.originalLanguage?.ifBlank { null },
             id = remote.id,
             voteCount = remote.voteCount,
-            overview = remote.overview,
-            posterUrl = buildImageUrl(remote.posterPath),
+            overview = remote.overview?.ifBlank { null },
+            posterUrl = remote.posterPath?.ifBlank{ null }?.let(::buildImageUrl),
             seasons = emptyList()
         )
 

@@ -8,27 +8,27 @@ import androidx.room.PrimaryKey
 data class EpisodeEntity(
 
     @ColumnInfo(name = "episode_number")
-    val episodeNumber: Int,
+    val episodeNumber: Int?,
 
     @ColumnInfo(name = "air_date")
-    val airDate: String,
+    val airDate: String?,
 
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String?,
 
     @ColumnInfo(name = "overview")
-    val overview: String,
+    val overview: String?,
 
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int?,
 
     @ColumnInfo(name = "still_path")
-    val stillPath: String,
+    val stillPath: String?,
 
     @ColumnInfo(name = "vote_average")
-    val voteAverage: Float,
+    val voteAverage: Float?,
 
     @ColumnInfo(name = "season_id")
-    val seasonId: Int
+    val seasonId: Int?
 )
