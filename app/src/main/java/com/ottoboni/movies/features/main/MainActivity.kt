@@ -9,6 +9,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.ottoboni.movies.R
 import com.ottoboni.movies.databinding.ActivityMainBinding
+import com.ottoboni.movies.extensions.showErrorSnackbar
 import com.ottoboni.movies.features.show.ShowAdapter
 import com.ottoboni.movies.features.showdetails.ShowDetailsActivity
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity
@@ -85,6 +86,18 @@ class MainActivity : AppCompatActivity() {
             show?.let {
                 startActivity(ShowDetailsActivity.newIntent(this@MainActivity, it))
             }
+        }
+
+        actionOnError.observe(this@MainActivity) {
+            showErrorSnackbar(binding.colMainRoot, R.string.generic_error_snackbar_text)
+        }
+
+        actionOnConnectivityError.observe(this@MainActivity) {
+            showErrorSnackbar(binding.colMainRoot, R.string.no_internet_error_snackbar_text)
+        }
+
+        actionOnNetworkError.observe(this@MainActivity) {
+            it?.let { showErrorSnackbar(binding.colMainRoot, it) }
         }
     }
 }

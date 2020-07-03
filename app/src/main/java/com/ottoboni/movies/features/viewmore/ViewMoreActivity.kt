@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.ottoboni.movies.R
 import com.ottoboni.movies.databinding.ActivityViewMoreBinding
+import com.ottoboni.movies.extensions.showErrorSnackbar
 import com.ottoboni.movies.features.show.ShowAdapter
 import com.ottoboni.movies.features.showdetails.ShowDetailsActivity
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.POPULAR
@@ -67,6 +68,18 @@ abstract class ViewMoreActivity : AppCompatActivity() {
             show?.let {
                 startActivity(ShowDetailsActivity.newIntent(this@ViewMoreActivity, it))
             }
+        }
+
+        actionOnError.observe(this@ViewMoreActivity) {
+            showErrorSnackbar(binding.colViewMoreRoot, R.string.generic_error_snackbar_text)
+        }
+
+        actionOnConnectivityError.observe(this@ViewMoreActivity) {
+            showErrorSnackbar(binding.colViewMoreRoot, R.string.no_internet_error_snackbar_text)
+        }
+
+        actionOnNetworkError.observe(this@ViewMoreActivity) {
+            it?.let { showErrorSnackbar(binding.colViewMoreRoot, it) }
         }
     }
 

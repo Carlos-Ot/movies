@@ -1,5 +1,6 @@
 package com.ottoboni.movies.domain.di
 
+import com.ottoboni.movies.data.source.remote.error.RemoteExceptionFactory
 import com.ottoboni.movies.data.source.remote.model.EpisodeResponse
 import com.ottoboni.movies.data.source.remote.model.GenreResponse
 import com.ottoboni.movies.data.source.remote.model.SeasonResponse
@@ -17,6 +18,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import retrofit2.HttpException
 
 @InstallIn(ApplicationComponent::class)
 @Module
@@ -32,4 +34,8 @@ abstract class FactoryModule {
 
     @Binds
     abstract fun bindShowFactory(impl: ShowFactory): ModelFactory<ShowResponse, Show>
+
+    @Binds
+    abstract fun bindRemoteExceptionFactory(impl: RemoteExceptionFactory):
+            ModelFactory<HttpException, Exception>
 }

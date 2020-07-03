@@ -11,37 +11,42 @@
                 type="com.ottoboni.movies.features.viewmore.ViewMoreViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/col_view_more_root"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/ebony_clay">
+            android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/t_view_more"
-                style="@style/ToolbarStyle"
-                android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:title="@string/view_more_trending_title_text" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/ebony_clay">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_view_more"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:clipToPadding="false"
-                android:paddingHorizontal="4dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="32dp"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/t_view_more"
-                app:spanCount="3"
-                tools:listitem="@layout/item_show" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/t_view_more"
+                    style="@style/ToolbarStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:title="@string/view_more_trending_title_text" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_view_more"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="4dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="32dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/t_view_more"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_show" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -3,22 +3,22 @@ package com.ottoboni.movies.features.main
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
-import androidx.lifecycle.viewModelScope
+import com.ottoboni.movies.connectivity.ConnectivityViewModel
+import com.ottoboni.movies.domain.dispatchers.DispatcherMap
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.domain.model.setGenres
 import com.ottoboni.movies.domain.repository.IGenreRepository
 import com.ottoboni.movies.domain.repository.IShowRepository
 import com.ottoboni.movies.util.SingleLiveEvent
-import kotlinx.coroutines.launch
 import java.util.*
 
 class MainViewModel @ViewModelInject constructor(
     private val genreRepository: IGenreRepository,
-    private val showRepository: IShowRepository
-) : ViewModel() {
+    private val showRepository: IShowRepository,
+    dispatcherMap: DispatcherMap
+) : ConnectivityViewModel(dispatcherMap) {
 
     private val _trending = MutableLiveData(emptyList<Show>())
 
@@ -40,11 +40,17 @@ class MainViewModel @ViewModelInject constructor(
     private val _actionOnShowClicked = SingleLiveEvent<Show?>()
     val actionOnShowClicked: LiveData<Show?> get() = _actionOnShowClicked
 
+    val actionOnError: LiveData<Any> get() = actionOnGenericError
+
+    val actionOnConnectivityError: LiveData<Any> get() = actionOnNoInternetError
+
+    val actionOnNetworkError: LiveData<String?> get() = actionOnHttpError
+
     init {
-        loadShows()
+        safeLaunch(::loadShows)
     }
 
-    private fun loadShows() = viewModelScope.launch {
+    private suspend fun loadShows() {
         val genres = genreRepository.loadGenres()
 
         val trending = showRepository.fetchTrending()

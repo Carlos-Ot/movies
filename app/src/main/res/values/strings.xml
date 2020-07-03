@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Serial</string>
 
+    <string name="generic_error_snackbar_text">We could not complete your request.</string>
+    <string name="no_internet_error_snackbar_text">No internet connection.</string>
+
     <!-- Main -->
     <string name="main_trending_title_text">Trending</string>
     <string name="main_popular_title_text">Popular</string>
