@@ -2,10 +2,11 @@ package com.ottoboni.movies.domain.model.mapper
 
 import com.ottoboni.movies.data.source.local.entity.EpisodeEntity
 import com.ottoboni.movies.domain.model.Episode
+import javax.inject.Inject
 
-object EpisodeMapper : Mapper<EpisodeEntity, Episode> {
-    override fun toDomain(entity: EpisodeEntity): Episode {
-        return Episode(
+class EpisodeMapper @Inject constructor() : Mapper<EpisodeEntity, Episode> {
+    override fun toDomain(entity: EpisodeEntity) =
+        Episode(
             id = entity.id,
             episodeNumber = entity.episodeNumber,
             airDate = entity.airDate,
@@ -15,10 +16,9 @@ object EpisodeMapper : Mapper<EpisodeEntity, Episode> {
             voteAverage = entity.voteAverage,
             seasonId = entity.seasonId
         )
-    }
 
-    override fun fromDomain(domain: Episode): EpisodeEntity {
-        return EpisodeEntity(
+    override fun fromDomain(domain: Episode) =
+        EpisodeEntity(
             id = domain.id,
             episodeNumber = domain.episodeNumber,
             airDate = domain.airDate,
@@ -28,5 +28,4 @@ object EpisodeMapper : Mapper<EpisodeEntity, Episode> {
             voteAverage = domain.voteAverage,
             seasonId = domain.seasonId
         )
-    }
 }

@@ -9,6 +9,8 @@ import com.ottoboni.movies.data.source.local.entity.GenreEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -49,12 +51,14 @@ class GenreDaoTest {
     fun deleteGenre() = runBlocking {
         genreDao.insert(*DataUtils.genreList.toTypedArray())
 
-        val genreFromDb = genreDao.getAll().first()
+        val genreFromDb = genreDao.getAll()?.first()
 
-        genreDao.delete(genreFromDb)
+        if (genreFromDb != null) genreDao.delete(genreFromDb)
+        else fail()
 
-        val genresFromDb = genreDao.getAll()
+        val genresFromDb = genreDao.getAll() ?: emptyList()
 
+        assertTrue(genresFromDb.isNotEmpty())
         assertFalse(genresFromDb.contains(genreFromDb))
     }
 

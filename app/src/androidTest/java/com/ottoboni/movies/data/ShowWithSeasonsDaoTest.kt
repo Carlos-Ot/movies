@@ -9,6 +9,7 @@ import com.ottoboni.movies.data.source.local.database.dao.ShowDao
 import com.ottoboni.movies.data.source.local.database.dao.ShowWithSeasonsDao
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,7 +41,8 @@ class ShowWithSeasonsDaoTest {
 
         val showsWithSeasons = showWithSeasonsDao.getShowsWithSeasons()
 
-        assertEquals(DataUtils.seasonList, showsWithSeasons.first().seasons)
+        assertNotNull(showsWithSeasons)
+        assertEquals(DataUtils.seasonList, showsWithSeasons?.first()?.seasons)
     }
 
     @Test
@@ -48,8 +50,10 @@ class ShowWithSeasonsDaoTest {
         showDao.insert(*DataUtils.showList.toTypedArray())
         seasonDao.insert(*DataUtils.seasonList.toTypedArray())
 
-        val showWithSeasons = showWithSeasonsDao.getShowWithSeasonsById(DataUtils.SEASON_WITH_EPISODES_SHOW_ID)
+        val showWithSeasons =
+            showWithSeasonsDao.getShowWithSeasonsById(DataUtils.SEASON_WITH_EPISODES_SHOW_ID)
 
-        assertEquals(DataUtils.seasonList, showWithSeasons.seasons)
+        assertNotNull(showWithSeasons)
+        assertEquals(DataUtils.seasonList, showWithSeasons?.seasons)
     }
 }

@@ -9,7 +9,8 @@ data class ShowWithSeasons(
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "show_id"
+        entityColumn = "show_id",
+        entity = SeasonEntity::class
     )
     val seasons: List<SeasonEntity> = ArrayList()
 )

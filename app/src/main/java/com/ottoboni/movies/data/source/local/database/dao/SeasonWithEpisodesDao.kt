@@ -10,9 +10,9 @@ interface SeasonWithEpisodesDao {
 
     @Transaction
     @Query("SELECT * FROM tb_season WHERE id = :seasonId")
-    suspend fun getSeasonWithEpisodes(seasonId: Int): SeasonWithEpisodes
+    suspend fun getSeasonWithEpisodes(seasonId: Int): SeasonWithEpisodes?
 
     @Transaction
     @Query("SELECT * FROM tb_season WHERE show_id = :showId")
-    suspend fun getSeasonsWithEpisodesByShow(showId: Int): List<SeasonWithEpisodes>
+    suspend fun getSeasonsWithEpisodesByShow(showId: Int): List<SeasonWithEpisodes>?
 }

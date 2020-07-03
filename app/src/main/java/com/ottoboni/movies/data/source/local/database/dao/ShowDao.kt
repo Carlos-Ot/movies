@@ -8,8 +8,8 @@ import com.ottoboni.movies.data.source.local.entity.ShowEntity
 interface ShowDao : BaseDao<ShowEntity> {
 
     @Query("SELECT * FROM tb_show")
-    suspend fun getAll(): List<ShowEntity>
+    suspend fun getAll(): List<ShowEntity>?
 
     @Query("SELECT * FROM tb_show WHERE id = :showId")
-    suspend fun getById(showId: Int): ShowEntity
+    suspend fun getById(showId: Int): ShowEntity?
 }

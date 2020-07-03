@@ -9,8 +9,9 @@ import com.ottoboni.movies.data.source.local.entity.EpisodeEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,16 +33,16 @@ class EpisodeDaoTest {
 
     @Test
     fun getEpisodeWithEmptyDatabase() = runBlocking {
-        val episodes = episodeDao.getAll()
+        val episodes = episodeDao.getAll() ?: emptyList()
 
         assertTrue(episodes.isEmpty())
     }
 
     @Test
-    fun getByIdWithemptyDatabase() = runBlocking {
+    fun getByIdWithEmptyDatabase() = runBlocking {
         val episode = episodeDao.getById(1)
 
-        assertNotNull(episode)
+        assertNull(episode)
     }
 
     @Test
@@ -66,12 +67,14 @@ class EpisodeDaoTest {
     fun deleteEpisode() = runBlocking {
         episodeDao.insert(*DataUtils.episodeList.toTypedArray())
 
-        val episodeFromDb = episodeDao.getAll().first()
+        val episodeFromDb = episodeDao.getAll()?.first()
 
-        episodeDao.delete(episodeFromDb)
+        if (episodeFromDb != null) episodeDao.delete(episodeFromDb)
+        else fail()
 
-        val episodesFromDb = episodeDao.getAll()
+        val episodesFromDb = episodeDao.getAll() ?: emptyList()
 
+        assertTrue(episodesFromDb.isNotEmpty())
         assertFalse(episodesFromDb.contains(episodeFromDb))
     }
 
@@ -83,7 +86,7 @@ class EpisodeDaoTest {
             0,
             "2019-04-00",
             "WinterHell",
-            "Arriving at Winterfell, Jon and Daenerys struggle to unite a divided North. Jon Snow gets some big news.",
+            "ABC",
             1551825,
             "/aeLFDgp0J9140lS4nWUgZZRK6Rp.jpg",
             7.563F,

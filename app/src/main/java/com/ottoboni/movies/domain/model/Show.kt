@@ -1,33 +1,45 @@
 package com.ottoboni.movies.domain.model
 
-data class Show(
-    val originalName: String,
+import android.os.Parcelable
+import javax.inject.Inject
+import kotlinx.android.parcel.Parcelize
 
-    var genres: List<Genre>,
+@Parcelize
+data class Show @Inject constructor(
+    val originalName: String?,
 
-    val genreIds: List<Int>,
+    var genres: List<Genre>?,
 
-    val name: String,
+    val genreIds: List<Int>?,
 
-    val popularity: Float,
+    val name: String?,
 
-    val originCountry: List<String>,
+    val popularity: Float?,
 
-    val voteCount: Int,
+    val originCountry: List<String>?,
 
-    val firstAirDate: String,
+    val voteCount: Int?,
 
-    val backdropPath: String,
+    val firstAirDate: String?,
 
-    val originalLanguage: String,
+    val backdropUrl: String?,
 
-    val id: Int,
+    val originalLanguage: String?,
 
-    val voteAverage: Float,
+    val id: Int?,
 
-    val overview: String,
+    val voteAverage: Float?,
 
-    val posterPath: String,
+    val overview: String?,
 
-    var seasons: List<Season>
-)
+    val posterUrl: String?,
+
+    var seasons: List<Season>?
+) : Parcelable
+
+fun List<Show>.setGenres(genres: List<Genre>?) =
+    forEach { show ->
+        show.apply {
+            this.genres = genres?.filter { genre -> genreIds?.contains(genre.id) ?: false }
+        }
+    }

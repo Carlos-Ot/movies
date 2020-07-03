@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_size_toolbar">18sp</dimen>
+    <dimen name="text_size_toolbar_expanded">24sp</dimen>
+
+    <!-- Main -->
+    <dimen name="scrim_trigger_main_toolbar">80dp</dimen>
+    <dimen name="height_main_featured_shows">240dp</dimen>
+    <dimen name="margin_bottom_main_featured_shows_indicator">8dp</dimen>
+    <dimen name="margin_horizontal_main_trending_title">16dp</dimen>
+    <dimen name="text_size_main_section_title">32sp</dimen>
+    <dimen name="text_size_main_button_more">16sp</dimen>
+    <dimen name="icon_padding_main_button_more">4dp</dimen>
+    <dimen name="margin_end_main_button_more">16dp</dimen>
+    <dimen name="margin_top_main_trending_title">32dp</dimen>
+    <dimen name="margin_top_main_trending_rv">16dp</dimen>
+    <dimen name="margin_horizontal_main_popular_title">16dp</dimen>
+    <dimen name="margin_top_main_popular_title">24dp</dimen>
+    <dimen name="margin_top_main_popular_rv">16dp</dimen>
+
+    <!-- Item Featured Show -->
+    <dimen name="height_item_featured_show">@dimen/height_main_featured_shows</dimen>
+    <dimen name="height_item_featured_show_gradient">100dp</dimen>
+    <dimen name="margin_horizontal_item_featured_show_title">16dp</dimen>
+    <dimen name="margin_bottom_item_featured_show_title">24dp</dimen>
+    <dimen name="text_size_item_featured_show_title">26sp</dimen>
+
+    <!-- Item Show -->
+    <dimen name="margin_item_show">4dp</dimen>
+    <dimen name="margin_vertical_item_show">4dp</dimen>
+    <dimen name="radius_item_show">4dp</dimen>
+    <dimen name="width_item_show_poster">120dp</dimen>
+    <dimen name="size_item_show_popularity">40dp</dimen>
+    <dimen name="margin_end_item_show_popularity">8dp</dimen>
+    <dimen name="radius_item_show_popularity">20dp</dimen>
+    <dimen name="text_size_item_show_popularity">10sp</dimen>
+    <dimen name="text_size_item_show_popularity_label">6sp</dimen>
+    <dimen name="margin_horizontal_item_show_title">8dp</dimen>
+    <dimen name="margin_vertical_item_show_title">8dp</dimen>
+    <dimen name="text_size_item_show_title">16sp</dimen>
+
+    <!-- Show Details -->
+    <dimen name="width_show_details_header">240dp</dimen>
+    <dimen name="constraint_guid_begin_show_details_start_margin">16dp</dimen>
+    <dimen name="constraint_guid_end_show_details_end_margin">16dp</dimen>
+    <dimen name="width_show_details_poster">120dp</dimen>
+    <dimen name="margin_start_show_details_popularity">16dp</dimen>
+    <dimen name="margin_bottom_show_details_popularity">8dp</dimen>
+    <dimen name="margin_start_show_details_popularity_label">8dp</dimen>
+    <dimen name="text_size_show_details_popularity_label">14sp</dimen>
+    <dimen name="margin_start_show_details_genres">16dp</dimen>
+    <dimen name="margin_top_show_details_genres">16dp</dimen>
+    <dimen name="text_size_show_details_genres">14sp</dimen>
+    <dimen name="margin_top_show_details_overview_title">24dp</dimen>
+    <dimen name="text_size_show_details_overview_title">22sp</dimen>
+    <dimen name="margin_top_show_details_overview">8dp</dimen>
+    <dimen name="text_size_show_details_overview">14sp</dimen>
+</resources>

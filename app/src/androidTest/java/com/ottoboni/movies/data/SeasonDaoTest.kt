@@ -8,6 +8,7 @@ import com.ottoboni.movies.data.source.local.database.dao.SeasonDao
 import com.ottoboni.movies.data.source.local.entity.SeasonEntity
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertFalse
+import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -60,8 +61,9 @@ class SeasonDaoTest {
 
         seasonDao.delete(DataUtils.seasonList.first())
 
-        val seasonsFromDb = seasonDao.getAll()
+        val seasonsFromDb = seasonDao.getAll() ?: emptyList()
 
+        assertTrue(seasonsFromDb.isNotEmpty())
         assertFalse(seasonsFromDb.contains(DataUtils.seasonList.first()))
     }
 
@@ -74,7 +76,7 @@ class SeasonDaoTest {
             episodeCount = 10,
             id = 107971,
             name = "Season 5",
-            overview = "Following the shocking developments at the conclusion of season five, survivors from all parts of Westeros and Essos regroup to press forward, inexorably, towards their uncertain individual fates. Familiar faces will forge new alliances to bolster their strategic chances at survival, while new characters will emerge to challenge the balance of power in the east, west, north and south.",
+            overview = "",
             posterPath = "/7Q1Hy1AHxAzA2lsmzEMBvuWTX0x.jpg",
             seasonNumber = 5,
             showId = 1399

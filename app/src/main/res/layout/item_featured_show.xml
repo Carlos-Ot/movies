@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_item_featured_show">
+
+        <ImageView
+                android:id="@+id/iv_item_featured_show_backdrop"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/bunker"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_backdrop_placeholder" />
+
+        <View
+                android:id="@+id/v_featured_show_gradient"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_item_featured_show_gradient"
+                android:background="@drawable/item_featured_show_title_shape_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+                android:id="@+id/tv_featured_show_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_horizontal_item_featured_show_title"
+                android:layout_marginBottom="@dimen/margin_bottom_item_featured_show_title"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_item_featured_show_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Dark" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
