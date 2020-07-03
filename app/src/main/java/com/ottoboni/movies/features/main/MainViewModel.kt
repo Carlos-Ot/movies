@@ -11,6 +11,7 @@ import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.domain.model.setGenres
 import com.ottoboni.movies.domain.repository.IGenreRepository
 import com.ottoboni.movies.domain.repository.IShowRepository
+import com.ottoboni.movies.domain.repository.ShowRepository.Companion.STARTING_PAGE
 import com.ottoboni.movies.util.SingleLiveEvent
 import java.util.*
 
@@ -53,11 +54,12 @@ class MainViewModel @ViewModelInject constructor(
     private suspend fun loadShows() {
         val genres = genreRepository.loadGenres()
 
-        val trending = showRepository.fetchTrending()
+        val trending = showRepository.fetchTrending(STARTING_PAGE)
         trending?.setGenres(genres)
         _trending.postValue(trending)
 
-        val popular = showRepository.fetchPopular(1, Locale.getDefault().toLanguageTag())
+        val popular =
+            showRepository.fetchPopular(STARTING_PAGE, Locale.getDefault().toLanguageTag())
         popular?.setGenres(genres)
         _popular.postValue(popular)
     }

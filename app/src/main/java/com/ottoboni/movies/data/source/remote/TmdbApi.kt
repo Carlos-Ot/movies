@@ -26,7 +26,8 @@ interface TmdbApi {
     @GET("$TMDB_API_VERSION/trending/{media_type}/{time_window}")
     suspend fun fetchTrendingShowsAsync(
         @Path("media_type") mediaType: MediaType,
-        @Path("time_window") timeWindow: TimeWindow
+        @Path("time_window") timeWindow: TimeWindow,
+        @Query("page") page: Int
     ): ApiResponse?
 
     @GET("$TMDB_API_VERSION/tv/{tv_id}")

@@ -29,11 +29,15 @@ class ShowRepository @Inject constructor(
                 ?.distinctBy { it.id }
                 ?.take(PAGE_SIZE)
 
-    override suspend fun fetchTrending() =
-        if (trendingCache.items.isEmpty())
-            remoteDataSource.fetchTrending(MediaType.TV, TimeWindow.WEEK)
+    override suspend fun fetchTrending(page: Int) =
+        trendingCache.items
+            .takeIf { it.size >= page * PAGE_SIZE + PAGE_SIZE }
+            ?.subList(fromIndex = page * PAGE_SIZE, toIndex = page * PAGE_SIZE + PAGE_SIZE)
+            ?: remoteDataSource.fetchTrending(page, MediaType.TV, TimeWindow.WEEK)
                 ?.also { trendingCache += it }
-        else trendingCache.items
+                ?.distinctBy { it.id }
+                ?.take(PAGE_SIZE)
+
 
     override suspend fun fetchBy(showId: Int) =
         if (popularCache.items.isEmpty())
@@ -51,6 +55,7 @@ class ShowRepository @Inject constructor(
     override suspend fun getBy(id: Int) = localDataSource.getById(id)
 
     companion object {
+        const val STARTING_PAGE = 1
         const val PAGE_SIZE = 20
     }
 }

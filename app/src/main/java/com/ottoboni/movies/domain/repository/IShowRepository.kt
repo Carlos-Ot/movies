@@ -9,7 +9,7 @@ interface IShowRepository {
 
     suspend fun fetchPopular(page: Int, region: String): List<Show>?
 
-    suspend fun fetchTrending(): List<Show>?
+    suspend fun fetchTrending(page: Int): List<Show>?
 
     suspend fun fetchBy(showId: Int): Show?
 

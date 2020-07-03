@@ -22,12 +22,13 @@ class ShowRetrofitDataSource @Inject constructor(
     }
 
 
-    override suspend fun fetchTrending(mediaType: MediaType, timeWindow: TimeWindow) = safeCall {
-        apiClient.fetchTrendingShowsAsync(mediaType, timeWindow)
-            ?.results
-            ?.ifEmpty { null }
-            ?.map(showFactory::make)
-    }
+    override suspend fun fetchTrending(page: Int, mediaType: MediaType, timeWindow: TimeWindow) =
+        safeCall {
+            apiClient.fetchTrendingShowsAsync(mediaType, timeWindow, page)
+                ?.results
+                ?.ifEmpty { null }
+                ?.map(showFactory::make)
+        }
 
     override suspend fun fetchBy(showId: Int) = safeCall {
         apiClient.fetchShowAsync(showId)

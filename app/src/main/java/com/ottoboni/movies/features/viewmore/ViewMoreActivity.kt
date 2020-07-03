@@ -11,7 +11,7 @@ import androidx.lifecycle.observe
 import com.ottoboni.movies.R
 import com.ottoboni.movies.databinding.ActivityViewMoreBinding
 import com.ottoboni.movies.extensions.showErrorSnackbar
-import com.ottoboni.movies.features.show.ShowAdapter
+import com.ottoboni.movies.features.show.ShowPagedAdapter
 import com.ottoboni.movies.features.showdetails.ShowDetailsActivity
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.POPULAR
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.TRENDING
@@ -24,7 +24,7 @@ abstract class ViewMoreActivity : AppCompatActivity() {
 
     private val viewModel: ViewMoreViewModel by viewModels()
 
-    private lateinit var showAdapter: ShowAdapter
+    private lateinit var showAdapter: ShowPagedAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +51,7 @@ abstract class ViewMoreActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() = with(binding.rvViewMore) {
-        showAdapter = ShowAdapter(this@ViewMoreActivity, showClickListener)
+        showAdapter = ShowPagedAdapter(this@ViewMoreActivity, showClickListener)
         adapter = showAdapter
     }
 
@@ -61,7 +61,7 @@ abstract class ViewMoreActivity : AppCompatActivity() {
 
     private fun observeEvents() = with(viewModel) {
         shows.observe(this@ViewMoreActivity) {
-            showAdapter.items = it
+            showAdapter.submitList(it)
         }
 
         actionOnShowClicked.observe(this@ViewMoreActivity) { show ->
@@ -98,7 +98,6 @@ abstract class ViewMoreActivity : AppCompatActivity() {
             Intent(context, ViewMorePopularActivity::class.java)
                 .apply { putExtra(SOURCE_EXTRA_KEY, POPULAR) }
     }
-
 
     enum class Source {
         TRENDING,

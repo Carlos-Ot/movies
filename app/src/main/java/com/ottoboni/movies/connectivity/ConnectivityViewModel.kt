@@ -23,23 +23,25 @@ abstract class ConnectivityViewModel(private val dispatcherMap: DispatcherMap) :
     protected val actionOnHttpError = SingleLiveEvent<String?>()
     protected val actionOnGenericError = SingleLiveEvent<Any>()
 
-    protected fun safeLaunch(block: suspend () -> Unit) = viewModelScope.launch(dispatcherMap.ui) {
-        try {
-            withContext(dispatcherMap.io) { block() }
-        } catch (e: ConnectException) {
-            onLaunchException(NO_INTERNET)
-        } catch (e: UnknownHostException) {
-            onLaunchException(NO_INTERNET)
-        } catch (e: UnauthorizedException) {
-            onLaunchException(HTTP_ERROR, e.message)
-        } catch (e: NotFoundException) {
-            onLaunchException(HTTP_ERROR, e.message)
-        } catch (e: UnknownNetworkErrorException) {
-            onLaunchException(HTTP_ERROR, e.message)
-        } catch (e: IOException) {
-            onLaunchException(GENERIC_ERROR)
-        } catch (e: JsonDataException) {
-            onLaunchException(GENERIC_ERROR)
+    protected fun safeLaunch(block: suspend () -> Unit) {
+        viewModelScope.launch(dispatcherMap.ui) {
+            try {
+                withContext(dispatcherMap.io) { block() }
+            } catch (e: ConnectException) {
+                onLaunchException(NO_INTERNET)
+            } catch (e: UnknownHostException) {
+                onLaunchException(NO_INTERNET)
+            } catch (e: UnauthorizedException) {
+                onLaunchException(HTTP_ERROR, e.message)
+            } catch (e: NotFoundException) {
+                onLaunchException(HTTP_ERROR, e.message)
+            } catch (e: UnknownNetworkErrorException) {
+                onLaunchException(HTTP_ERROR, e.message)
+            } catch (e: IOException) {
+                onLaunchException(GENERIC_ERROR)
+            } catch (e: JsonDataException) {
+                onLaunchException(GENERIC_ERROR)
+            }
         }
     }
 

@@ -18,6 +18,7 @@ versions.lifecycle = '2.2.0'
 versions.arch_core = '2.1.0'
 versions.arch_core = '2.1.0'
 versions.room = '2.2.5'
+versions.paging = '2.1.2'
 
 // Android UI
 versions.appcompat = '1.1.0'
@@ -120,7 +121,8 @@ deps.android_ui = android_ui
 
 def androidx = [
         "androidx.core:core-ktx:$versions.core_ktx",
-        "androidx.annotation:annotation:$versions.annotation"
+        "androidx.annotation:annotation:$versions.annotation",
+        "androidx.paging:paging-runtime-ktx:$versions.paging"
 ]
 deps.androidx = androidx
 
