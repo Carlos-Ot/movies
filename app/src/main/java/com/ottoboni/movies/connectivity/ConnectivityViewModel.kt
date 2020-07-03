@@ -11,11 +11,11 @@ import com.ottoboni.movies.data.source.remote.error.UnknownNetworkErrorException
 import com.ottoboni.movies.domain.dispatchers.DispatcherMap
 import com.ottoboni.movies.util.SingleLiveEvent
 import com.squareup.moshi.JsonDataException
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.net.ConnectException
 import java.net.UnknownHostException
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 abstract class ConnectivityViewModel(private val dispatcherMap: DispatcherMap) : ViewModel() {
 

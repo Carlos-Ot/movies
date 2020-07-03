@@ -22,7 +22,7 @@ import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Companion.SOURCE_E
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source
 import com.ottoboni.movies.features.viewmore.ViewMoreActivity.Source.TRENDING
 import com.ottoboni.movies.util.SingleLiveEvent
-import java.util.*
+import java.util.Locale
 
 class ViewMoreViewModel @ViewModelInject constructor(
     private val genreRepository: IGenreRepository,

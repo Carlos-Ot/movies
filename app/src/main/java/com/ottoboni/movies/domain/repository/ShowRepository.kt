@@ -38,7 +38,6 @@ class ShowRepository @Inject constructor(
                 ?.distinctBy { it.id }
                 ?.take(PAGE_SIZE)
 
-
     override suspend fun fetchBy(showId: Int) =
         if (popularCache.items.isEmpty())
             remoteDataSource.fetchBy(showId)?.also(popularCache::plusAssign)

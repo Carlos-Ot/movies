@@ -37,5 +37,5 @@ abstract class FactoryModule {
 
     @Binds
     abstract fun bindRemoteExceptionFactory(impl: RemoteExceptionFactory):
-            ModelFactory<HttpException, Exception>
+        ModelFactory<HttpException, Exception>
 }

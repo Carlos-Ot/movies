@@ -6,8 +6,8 @@ import com.ottoboni.movies.data.source.remote.model.enums.MediaType
 import com.ottoboni.movies.data.source.remote.model.enums.TimeWindow
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.domain.model.factory.ModelFactory
-import retrofit2.HttpException
 import javax.inject.Inject
+import retrofit2.HttpException
 
 class ShowRetrofitDataSource @Inject constructor(
     private val apiClient: TmdbApi,
@@ -20,7 +20,6 @@ class ShowRetrofitDataSource @Inject constructor(
             ?.ifEmpty { null }
             ?.map(showFactory::make)
     }
-
 
     override suspend fun fetchTrending(page: Int, mediaType: MediaType, timeWindow: TimeWindow) =
         safeCall {

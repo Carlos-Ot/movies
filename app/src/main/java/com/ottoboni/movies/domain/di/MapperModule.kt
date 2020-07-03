@@ -36,13 +36,13 @@ abstract class MapperModule {
     abstract fun bindSeasonMapper(impl: SeasonMapper): Mapper<SeasonEntity, Season>
 
     @Binds
-    abstract fun bindSeasonWithEpisodesMapper(impl: SeasonWithEpisodesMapper)
-            : RelationMapper<SeasonWithEpisodes, Season>
+    abstract fun bindSeasonWithEpisodesMapper(impl: SeasonWithEpisodesMapper):
+        RelationMapper<SeasonWithEpisodes, Season>
 
     @Binds
     abstract fun bindShowMapper(impl: ShowMapper): Mapper<ShowEntity, Show>
 
     @Binds
-    abstract fun bindShowWithSeasonsMapper(impl: ShowWithSeasonsMapper)
-            : RelationMapper<ShowWithSeasons, Show>
+    abstract fun bindShowWithSeasonsMapper(impl: ShowWithSeasonsMapper):
+        RelationMapper<ShowWithSeasons, Show>
 }

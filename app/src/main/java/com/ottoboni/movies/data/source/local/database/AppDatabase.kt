@@ -59,7 +59,10 @@ abstract class AppDatabase : RoomDatabase() {
                             .allowMainThreadQueries()
                             .build()
                     } else {
-                        instance = Room.databaseBuilder(context, AppDatabase::class.java, databaseName).build()
+                        instance =
+                            Room
+                                .databaseBuilder(context, AppDatabase::class.java, databaseName)
+                                .build()
                     }
                 }
             }

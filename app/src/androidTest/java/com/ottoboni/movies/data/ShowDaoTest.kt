@@ -77,7 +77,7 @@ class ShowDaoTest {
             originalLanguage = "ja",
             id = 1399,
             voteAverage = 8.1F,
-            overview = "Saitama is a hero who only became a hero for fun. After three years of “special” training, though, he’s become so strong that he’s practically invincible. In fact, he’s too strong—even his mightiest opponents are taken out with a single punch, and it turns out that being devastatingly powerful is actually kind of a bore. With his passion for being a hero lost along with his hair, yet still faced with new enemies every day, how much longer can he keep it going?",
+            overview = "",
             posterPath = "/iE3s0lG5QVdEHOEZnoAxjmMtvne.jpg"
         )
 

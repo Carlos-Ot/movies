@@ -1,9 +1,9 @@
 package com.ottoboni.movies.data.source.remote.converters
 
 import com.squareup.moshi.Json
+import java.lang.reflect.Type
 import retrofit2.Converter
 import retrofit2.Retrofit
-import java.lang.reflect.Type
 
 object EnumConverterFactory : Converter.Factory() {
     override fun stringConverter(

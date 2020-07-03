@@ -13,7 +13,7 @@ import com.ottoboni.movies.domain.repository.IGenreRepository
 import com.ottoboni.movies.domain.repository.IShowRepository
 import com.ottoboni.movies.domain.repository.ShowRepository.Companion.STARTING_PAGE
 import com.ottoboni.movies.util.SingleLiveEvent
-import java.util.*
+import java.util.Locale
 
 class MainViewModel @ViewModelInject constructor(
     private val genreRepository: IGenreRepository,

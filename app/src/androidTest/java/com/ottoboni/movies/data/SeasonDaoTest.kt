@@ -76,7 +76,7 @@ class SeasonDaoTest {
             episodeCount = 10,
             id = 107971,
             name = "Season 5",
-            overview = "Following the shocking developments at the conclusion of season five, survivors from all parts of Westeros and Essos regroup to press forward, inexorably, towards their uncertain individual fates. Familiar faces will forge new alliances to bolster their strategic chances at survival, while new characters will emerge to challenge the balance of power in the east, west, north and south.",
+            overview = "",
             posterPath = "/7Q1Hy1AHxAzA2lsmzEMBvuWTX0x.jpg",
             seasonNumber = 5,
             showId = 1399

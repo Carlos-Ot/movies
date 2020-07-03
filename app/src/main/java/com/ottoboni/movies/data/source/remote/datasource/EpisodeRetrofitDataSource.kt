@@ -4,8 +4,8 @@ import com.ottoboni.movies.data.source.remote.TmdbApi
 import com.ottoboni.movies.data.source.remote.model.EpisodeResponse
 import com.ottoboni.movies.domain.model.Episode
 import com.ottoboni.movies.domain.model.factory.ModelFactory
-import retrofit2.HttpException
 import javax.inject.Inject
+import retrofit2.HttpException
 
 class EpisodeRetrofitDataSource @Inject constructor(
     private val apiClient: TmdbApi,

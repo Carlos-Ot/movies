@@ -4,14 +4,13 @@ import com.ottoboni.movies.data.source.remote.model.ErrorResponse
 import com.ottoboni.movies.domain.model.factory.ModelFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.HttpException
 import javax.inject.Inject
+import retrofit2.HttpException
 
 class RemoteExceptionFactory @Inject constructor() : ModelFactory<HttpException, Exception> {
 
     private val moshiAdapter =
         Moshi.Builder().add(KotlinJsonAdapterFactory()).build().adapter(ErrorResponse::class.java)
-
 
     override fun make(remote: HttpException) = parseErrorResponse(remote)
         ?.let {

@@ -1,8 +1,8 @@
 package com.ottoboni.movies.domain.dispatchers
 
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Inject
 
 class AppDispatcherMap @Inject constructor() : DispatcherMap {
 

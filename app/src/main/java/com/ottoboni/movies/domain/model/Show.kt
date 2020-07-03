@@ -1,8 +1,8 @@
 package com.ottoboni.movies.domain.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 import javax.inject.Inject
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Show @Inject constructor(

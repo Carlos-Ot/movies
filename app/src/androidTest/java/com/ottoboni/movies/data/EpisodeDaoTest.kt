@@ -72,7 +72,6 @@ class EpisodeDaoTest {
         if (episodeFromDb != null) episodeDao.delete(episodeFromDb)
         else fail()
 
-
         val episodesFromDb = episodeDao.getAll() ?: emptyList()
 
         assertTrue(episodesFromDb.isNotEmpty())
@@ -87,7 +86,7 @@ class EpisodeDaoTest {
             0,
             "2019-04-00",
             "WinterHell",
-            "Arriving at Winterfell, Jon and Daenerys struggle to unite a divided North. Jon Snow gets some big news.",
+            "ABC",
             1551825,
             "/aeLFDgp0J9140lS4nWUgZZRK6Rp.jpg",
             7.563F,

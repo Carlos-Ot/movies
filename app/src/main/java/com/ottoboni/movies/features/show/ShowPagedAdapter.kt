@@ -11,7 +11,6 @@ import com.ottoboni.movies.bindings.loadImage
 import com.ottoboni.movies.databinding.ItemShowBinding
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.extensions.layoutInflater
-import com.ottoboni.movies.extensions.onClick
 import kotlin.math.ceil
 
 class ShowPagedAdapter(
