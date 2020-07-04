@@ -4,15 +4,15 @@ import com.squareup.moshi.Json
 
 data class ApiResponse(
 
-    @field:Json(name = "page")
+    @Json(name = "page")
     val page: Int?,
 
-    @field:Json(name = "total_results")
+    @Json(name = "total_results")
     val totalResults: Int?,
 
-    @field:Json(name = "total_pages")
+    @Json(name = "total_pages")
     val totalPages: Int?,
 
-    @field:Json(name = "results")
+    @Json(name = "results")
     val results: List<ShowResponse>?
 )

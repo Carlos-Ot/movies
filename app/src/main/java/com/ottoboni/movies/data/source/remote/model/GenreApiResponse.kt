@@ -1,3 +1,5 @@
 package com.ottoboni.movies.data.source.remote.model
 
-data class GenreApiResponse(val genres: List<GenreResponse>?)
+import com.squareup.moshi.Json
+
+data class GenreApiResponse(@Json(name = "genres") val genres: List<GenreResponse>?)
