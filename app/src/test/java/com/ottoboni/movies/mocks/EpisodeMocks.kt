@@ -1,11 +1,11 @@
-package com.ottoboni.movies.data.remote.mocks
+package com.ottoboni.movies.mocks
 
 import com.ottoboni.movies.data.source.remote.model.EpisodeResponse
 import com.ottoboni.movies.domain.model.Episode
 import io.mockk.every
 import io.mockk.mockk
 
-object EpisodeResponseMocks {
+object EpisodeMocks {
     fun mockEpisodeResponseList(size: Int) = mutableListOf<EpisodeResponse>()
         .apply { repeat(size) { this += mockEpisodeResponse(it)} }
         .toList()

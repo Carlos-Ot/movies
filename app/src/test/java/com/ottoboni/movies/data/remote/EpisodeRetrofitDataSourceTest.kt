@@ -1,9 +1,9 @@
 package com.ottoboni.movies.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks
-import com.ottoboni.movies.data.remote.mocks.EpisodeResponseMocks.mockEpisode
-import com.ottoboni.movies.data.remote.mocks.EpisodeResponseMocks.mockEpisodeResponse
+import com.ottoboni.movies.mocks.ShowMocks
+import com.ottoboni.movies.mocks.EpisodeMocks.mockEpisode
+import com.ottoboni.movies.mocks.EpisodeMocks.mockEpisodeResponse
 import com.ottoboni.movies.data.source.remote.TmdbApi
 import com.ottoboni.movies.data.source.remote.datasource.EpisodeRemoteDataSource
 import com.ottoboni.movies.data.source.remote.datasource.EpisodeRetrofitDataSource
@@ -12,6 +12,7 @@ import com.ottoboni.movies.data.source.remote.error.UnauthorizedException
 import com.ottoboni.movies.data.source.remote.model.EpisodeResponse
 import com.ottoboni.movies.domain.model.Episode
 import com.ottoboni.movies.domain.model.factory.ModelFactory
+import com.ottoboni.movies.mocks.ErrorMocks.mockErrorResponse
 import io.mockk.Called
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -81,7 +82,7 @@ class EpisodeRetrofitDataSourceTest {
 
     @Test(expected = UnauthorizedException::class)
     fun `test fetchEpisode throws UnauthorizedException`() = runBlockingTest {
-        val errorResponse = ApiResponseMocks.mockErrorResponse(true)
+        val errorResponse = mockErrorResponse(true)
         coEvery {
             apiClient.fetchEpisodeAsync(any(), any(), any())
         } throws HttpException(errorResponse)
@@ -97,7 +98,7 @@ class EpisodeRetrofitDataSourceTest {
 
     @Test(expected = NotFoundException::class)
     fun `test fetchEpisode throws NotFoundException`() = runBlockingTest {
-        val errorResponse = ApiResponseMocks.mockErrorResponse(true)
+        val errorResponse = mockErrorResponse(true)
         coEvery {
             apiClient.fetchEpisodeAsync(any(), any(), any())
         } throws HttpException(errorResponse)

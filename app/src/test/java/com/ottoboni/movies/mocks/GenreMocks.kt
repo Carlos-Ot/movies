@@ -1,4 +1,4 @@
-package com.ottoboni.movies.data.remote.mocks
+package com.ottoboni.movies.mocks
 
 import com.ottoboni.movies.data.source.remote.model.GenreApiResponse
 import com.ottoboni.movies.data.source.remote.model.GenreResponse
@@ -6,7 +6,7 @@ import com.ottoboni.movies.domain.model.Genre
 import io.mockk.every
 import io.mockk.mockk
 
-object GenreResponseMocks {
+object GenreMocks {
     fun mockEmptyResults() = mockk<GenreApiResponse> {
         every { genres } returns emptyList()
     }
@@ -24,7 +24,7 @@ object GenreResponseMocks {
         .apply { repeat(size) { this += mockGenreResponse(it) } }
         .toList()
 
-    private fun mockGenreList(size: Int) = mutableListOf<Genre>()
+    fun mockGenreList(size: Int) = mutableListOf<Genre>()
         .apply { repeat(size) { this += mockGenre(it) } }
         .toList()
 

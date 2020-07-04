@@ -1,8 +1,8 @@
 package com.ottoboni.movies.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks
-import com.ottoboni.movies.data.remote.mocks.SeasonResponseMocks
+import com.ottoboni.movies.mocks.ShowMocks
+import com.ottoboni.movies.mocks.SeasonMocks
 import com.ottoboni.movies.data.source.remote.TmdbApi
 import com.ottoboni.movies.data.source.remote.datasource.SeasonRemoteDataSource
 import com.ottoboni.movies.data.source.remote.datasource.SeasonRetrofitDataSource
@@ -11,6 +11,7 @@ import com.ottoboni.movies.data.source.remote.error.UnauthorizedException
 import com.ottoboni.movies.data.source.remote.model.SeasonResponse
 import com.ottoboni.movies.domain.model.Season
 import com.ottoboni.movies.domain.model.factory.ModelFactory
+import com.ottoboni.movies.mocks.ErrorMocks.mockErrorResponse
 import io.mockk.Called
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -67,8 +68,8 @@ class SeasonRetrofitDataSourceTest {
     fun `test fetchSeason return Season`() = runBlocking {
         coEvery {
             apiClient.fetchSeasonAsync(any(), any())
-        } returns SeasonResponseMocks.mockSeasonResponse(1)
-        every { seasonFactory.make(any()) } returns SeasonResponseMocks.mockSeason(1)
+        } returns SeasonMocks.mockSeasonResponse(1)
+        every { seasonFactory.make(any()) } returns SeasonMocks.mockSeason(1)
 
         val result = dataSource.fetchSeason(1, 1)
 
@@ -79,7 +80,7 @@ class SeasonRetrofitDataSourceTest {
 
     @Test(expected = UnauthorizedException::class)
     fun `test fetchSeason throws UnauthorizedException`() = runBlockingTest {
-        val errorResponse = ApiResponseMocks.mockErrorResponse(true)
+        val errorResponse = mockErrorResponse(true)
         coEvery {
             apiClient.fetchSeasonAsync(any(), any())
         } throws HttpException(errorResponse)
@@ -95,7 +96,7 @@ class SeasonRetrofitDataSourceTest {
 
     @Test(expected = NotFoundException::class)
     fun `test fetchSeason throws NotFoundException`() = runBlockingTest {
-        val errorResponse = ApiResponseMocks.mockErrorResponse(true)
+        val errorResponse = mockErrorResponse(true)
         coEvery {
             apiClient.fetchSeasonAsync(any(), any())
         } throws HttpException(errorResponse)

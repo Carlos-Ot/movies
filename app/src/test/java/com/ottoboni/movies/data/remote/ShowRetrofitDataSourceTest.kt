@@ -1,11 +1,6 @@
 package com.ottoboni.movies.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks.mockEmptyResults
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks.mockErrorResponse
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks.mockNotEmptyResults
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks.mockShow
-import com.ottoboni.movies.data.remote.mocks.ApiResponseMocks.mockShowResponse
 import com.ottoboni.movies.data.source.remote.TmdbApi
 import com.ottoboni.movies.data.source.remote.datasource.ShowRemoteDataSource
 import com.ottoboni.movies.data.source.remote.datasource.ShowRetrofitDataSource
@@ -16,6 +11,11 @@ import com.ottoboni.movies.data.source.remote.model.enums.MediaType
 import com.ottoboni.movies.data.source.remote.model.enums.TimeWindow
 import com.ottoboni.movies.domain.model.Show
 import com.ottoboni.movies.domain.model.factory.ModelFactory
+import com.ottoboni.movies.mocks.ErrorMocks.mockErrorResponse
+import com.ottoboni.movies.mocks.ShowMocks.mockEmptyResults
+import com.ottoboni.movies.mocks.ShowMocks.mockNotEmptyResults
+import com.ottoboni.movies.mocks.ShowMocks.mockShow
+import com.ottoboni.movies.mocks.ShowMocks.mockShowResponse
 import io.mockk.Called
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -30,7 +30,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.HttpException
-import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -76,7 +75,7 @@ class ShowRetrofitDataSourceTest {
         coEvery {
             apiClient.fetchPopularShowsAsync(any(), any())
         } returns mockNotEmptyResults(resultsSize)
-        every { showFactory.make(any()) } returns mockShow()
+        every { showFactory.make(any()) } returns mockShow(1)
 
         val result = dataSource.fetchPopular(1, "")
 
@@ -141,7 +140,7 @@ class ShowRetrofitDataSourceTest {
         coEvery {
             apiClient.fetchTrendingShowsAsync(any(), any(), any())
         } returns mockNotEmptyResults(resultsSize)
-        every { showFactory.make(any()) } returns mockShow()
+        every { showFactory.make(any()) } returns mockShow(1)
 
         val result = dataSource.fetchTrending(1, MediaType.TV, TimeWindow.WEEK)
 
@@ -197,7 +196,7 @@ class ShowRetrofitDataSourceTest {
     @Test
     fun `test fetchBy returns Show`() = runBlocking {
         coEvery { apiClient.fetchShowAsync(any()) } returns mockShowResponse(1)
-        every { showFactory.make(any()) } returns mockShow()
+        every { showFactory.make(any()) } returns mockShow(1)
 
         val result = dataSource.fetchBy(1)
 

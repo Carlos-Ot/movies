@@ -11,7 +11,6 @@ import javax.inject.Inject
 class ShowRepository @Inject constructor(
     private val localDataSource: ShowLocalDataSource,
     private val remoteDataSource: ShowRemoteDataSource,
-    private val genresRepository: IGenreRepository,
     private val popularCache: ListCache<Show>,
     private val trendingCache: ListCache<Show>
 ) : IShowRepository {
@@ -22,8 +21,8 @@ class ShowRepository @Inject constructor(
 
     override suspend fun fetchPopular(page: Int, region: String) =
         popularCache.items
-            .takeIf { it.size >= page * PAGE_SIZE + PAGE_SIZE }
-            ?.subList(fromIndex = page * PAGE_SIZE, toIndex = page * PAGE_SIZE + PAGE_SIZE)
+            .takeIf { it.size >= page * PAGE_SIZE }
+            ?.subList(fromIndex = (page * PAGE_SIZE - PAGE_SIZE), toIndex = page * PAGE_SIZE)
             ?: remoteDataSource.fetchPopular(page, region)
                 ?.also { popularCache += it }
                 ?.distinctBy { it.id }
@@ -31,8 +30,8 @@ class ShowRepository @Inject constructor(
 
     override suspend fun fetchTrending(page: Int) =
         trendingCache.items
-            .takeIf { it.size >= page * PAGE_SIZE + PAGE_SIZE }
-            ?.subList(fromIndex = page * PAGE_SIZE, toIndex = page * PAGE_SIZE + PAGE_SIZE)
+            .takeIf { it.size >= page * PAGE_SIZE }
+            ?.subList(fromIndex = (page * PAGE_SIZE - PAGE_SIZE), toIndex = page * PAGE_SIZE)
             ?: remoteDataSource.fetchTrending(page, MediaType.TV, TimeWindow.WEEK)
                 ?.also { trendingCache += it }
                 ?.distinctBy { it.id }

@@ -14,11 +14,11 @@ class GenreCache @Inject constructor() : ListCache<Genre> {
         }
 
     override fun plusAssign(value: List<Genre>) {
-        items = items.plus(value)
+        items = items + value
     }
 
     override fun plusAssign(value: Genre) {
-        items = items.plus(listOf(value))
+        items = items + value
     }
 
     override fun clear() = _items.clear()
