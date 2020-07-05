@@ -14,11 +14,11 @@ class ShowCache @Inject constructor() : ListCache<Show> {
         }
 
     override fun plusAssign(value: List<Show>) {
-        items = items.plus(value)
+        items = items + value
     }
 
     override fun plusAssign(value: Show) {
-        items = items.plus(listOf(value))
+        items = items + value
     }
 
     override fun clear() = _items.clear()
